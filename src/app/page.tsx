@@ -51,7 +51,77 @@ export default function Home() {
     lien: 'https://www.givewell.org/',
     duree: 8,
     pris: false
-  }
+  },
+{
+  titre: 'Devenir bénévole pour une association humanitaire',
+  description: "S'engager dans une association locale ou internationale pour aider des communautés dans le besoin, par exemple via la distribution de nourriture ou l'accompagnement des personnes en difficulté.",
+  lien: 'https://www.humanitarianresponse.info/',
+  duree: 100,
+  pris: false
+},
+{
+  titre: 'Organiser un événement caritatif',
+  description: "Planifier et organiser un événement (comme une collecte de fonds ou un tournoi sportif) pour soutenir une cause importante.",
+  lien: 'https://www.guidestar.org/',
+  duree: 80,
+  pris: false
+},
+{
+  titre: 'Apprendre une compétence pour aider les autres',
+  description: "Prendre le temps de maîtriser une compétence comme le secourisme, afin de pouvoir intervenir efficacement en cas de besoin.",
+  lien: 'https://www.croix-rouge.fr/',
+  duree: 50,
+  pris: false
+},
+{
+  titre: 'Mentorer une personne en difficulté',
+  description: "Accompagner quelqu'un (un étudiant, une personne en reconversion professionnelle, etc.) pour l'aider à atteindre ses objectifs.",
+  lien: 'https://www.mentorat.fr/',
+  duree: 60,
+  pris: false
+},
+{
+  titre: 'Participer à un projet de recherche citoyenne',
+  description: "Collaborer avec des chercheurs sur des projets scientifiques ouverts, comme l'analyse de données ou des observations environnementales.",
+  lien: 'https://www.zooniverse.org/',
+  duree: 40,
+  pris: false
+},
+{
+  titre: 'Créer des ressources éducatives',
+  description: "Écrire des articles, enregistrer des vidéos ou concevoir des cours en ligne pour transmettre vos connaissances gratuitement.",
+  lien: 'https://www.khanacademy.org/',
+  duree: 70,
+  pris: false
+},
+{
+  titre: 'Soutenir les personnes sans abri',
+  description: "Passer du temps à discuter avec des personnes sans abri et leur fournir des repas, vêtements ou informations sur les services sociaux disponibles.",
+  lien: 'https://www.emmaus-solidarite.org/',
+  duree: 90,
+  pris: false
+},
+{
+  titre: 'Faire un volontariat dans un pays en développement',
+  description: "Partir en mission pour aider à la construction d'écoles, l'enseignement, ou d'autres projets de développement.",
+  lien: 'https://www.projects-abroad.fr/',
+  duree: 200,
+  pris: false
+},
+{
+  titre: 'Planter des arbres pour lutter contre la déforestation',
+  description: "S'investir dans des campagnes locales de reboisement en participant activement à des journées de plantation d'arbres.",
+  lien: 'https://www.reforestaction.com/',
+  duree: 50,
+  pris: false
+},
+{
+  titre: 'Traduire des documents pour des ONG',
+  description: "Utiliser vos compétences linguistiques pour traduire des ressources essentielles pour des organisations à but non lucratif.",
+  lien: 'https://translatorswithoutborders.org/',
+  duree: 40,
+  pris: false
+}
   ])
 
   function submit() {
@@ -108,14 +178,18 @@ export default function Home() {
             <p>Dépensez-le comme vous le souhaitez !</p>
             <div className="pt-4 flex flex-wrap gap-4">
               {activites.map((activite, i) => (
-                <div onClick={() => activerActivite(i)} key={i} className={"border rounded-2xl w-1/4 hover:bg-slate-50 gap-2 grow aspect-square flex flex-col items-center justify-center p-4 "+(activites[i].pris?"bg-slate-200 cursor-default hover:bg-slate-200":"cursor-pointer")}>
+                <div onClick={() => activerActivite(i)} key={i} className={"border rounded-2xl w-1/4 gap-2 grow aspect-square flex flex-col items-center justify-center p-4 "+(activites[i].pris?"bg-slate-200 cursor-default hover:bg-slate-200":"cursor-pointer hover:bg-slate-50")}>
                   <p className="font-medium text-wrap max-w-sm text-center">{activite.titre}</p>
                   <p className="font-light text-black/70 max-w-sm">{activite.duree} heure{activite.duree>1?"s":""}</p>
                 </div>
               ))}
+              {Array.from({ length: 3-activites.length%3 }, (_, i) => (
+                <div key={i} className="grow w-1/4"></div>
+              ))}
             </div>
           </div>
         )}
+        <p className="italic text-black/70 text-sm">Ce projet est un mini-projet fait en environ 1h30. Le projet est loin d&apos;être complet et est <a className="underline" href="https://github.com/imbjdd/temps-disponible-altruiste" target="_blank">Open Source</a>.<br/>Si vous souhaitez proposer des idées, vous pouvez ouvrir une issue sur le <a className="underline" href="https://github.com/imbjdd/temps-disponible-altruiste" target="_blank">dépôt Github</a>, ou bien m&apos;envoyer un mail à l&apos;adresse e-mail <span className="text-blue-400">ouimoinon@proton.me</span> si vous n&apos;êtez pas familier avec ce charabia ou bien que vous souhaitez discuter avec moi. :)</p>
       </div>
     </div>
   );
