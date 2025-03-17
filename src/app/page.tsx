@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import {useState} from 'react'
-import Link from "next/link"
+
 export default function Home() {
   const [formulaireSoumis, setFormulaireSoumis] = useState(false) // devrait être false
   const [temps, setTemps] = useState<number | null>(null) // devrait être 0
@@ -126,7 +126,7 @@ export default function Home() {
 
   function submit() {
     setFormulaireSoumis(true)
-    setTemps(tempsParAn(temps))
+    setTemps(tempsParAn(temps || 0))
   }
 
   function revenirEnArriere() {
@@ -147,13 +147,13 @@ export default function Home() {
     // si l'activité a déjà été sélectionnée
     if(activites[n].pris) return
     // si pas de temps disponible
-    if(temps - activites[n].duree < 0) return
+    if((temps || 0) - activites[n].duree < 0) return
 
     const banane = activites
     banane[n].pris = true
     setActivites(banane)
     console.log(temps, activites[n].duree)
-    setTemps(temps - activites[n].duree)
+    setTemps((temps || 0) - activites[n].duree)
     console.log(activites[n])
   }
 
@@ -178,7 +178,7 @@ export default function Home() {
                     Vous avez <span className="italic">probablement</span> bien plus de temps que vous pensez... 
                   </h2>
                   <p className="text-teal-50 text-lg mb-6">
-                    Commencez par indiquer combien d'heures par semaine vous pouvez consacrer à faire une différence.
+                    Commencez par indiquer combien d&apos;heures par semaine vous pouvez consacrer à faire une différence.
                   </p>
                   <div className="flex flex-col items-begin gap-4 w-fit">
                     <div>
@@ -217,7 +217,7 @@ export default function Home() {
                 <div className="bg-gray-50 p-8 rounded-lg">
                   <h3 className="text-xl font-medium text-gray-900 mb-4">Comment ça marche ?</h3>
                   <p className="text-gray-600">
-                    Indiquez votre disponibilité hebdomadaire et découvrez une sélection d'activités adaptées à votre emploi du temps pour maximiser votre impact.
+                    Indiquez votre disponibilité hebdomadaire et découvrez une sélection d&apos;activités adaptées à votre emploi du temps pour maximiser votre impact.
                   </p>
                 </div>
               </div>
